@@ -1,0 +1,19 @@
+node_modules/
+dist/
+.vite/
+coverage/
+*.tsbuildinfo
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.idea/
+.vscode/
+test-results/
+
+# Local initialization and deployment evidence
+/VALIDATION.md
+/first-commit.bundle
