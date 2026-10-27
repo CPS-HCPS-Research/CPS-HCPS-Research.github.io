@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ResearchArea } from "../data/site";
+import { ui } from "../i18n";
 defineProps<{ area: ResearchArea; index: number }>();
 </script>
 <template>
@@ -15,7 +16,7 @@ defineProps<{ area: ResearchArea; index: number }>();
       ><template v-else>{{ area.title }}</template>
     </h3>
     <p>{{ area.description }}</p>
-    <ul class="keywords" aria-label="Research topics">
+    <ul class="keywords" :aria-label="ui.researchTopics">
       <li v-for="word in area.keywords" :key="word">{{ word }}</li>
     </ul>
   </article>

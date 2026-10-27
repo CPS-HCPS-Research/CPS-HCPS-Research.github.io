@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { publications, site } from "../data/site";
+import { publications, site, ui } from "../i18n";
 </script>
 <template>
   <div v-if="!publications.length" class="publication-empty">
@@ -17,7 +17,7 @@ import { publications, site } from "../data/site";
       <p>{{ publication.authors.join(", ") }}</p>
       <p>{{ publication.venue }} · {{ publication.year }}</p>
       <a v-if="publication.artifactUrl" :href="publication.artifactUrl"
-        >Research artifact <span aria-hidden="true">↗</span></a
+        >{{ ui.researchArtifact }} <span aria-hidden="true">↗</span></a
       >
     </li>
   </ol>

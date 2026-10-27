@@ -1,140 +1,89 @@
+<script setup lang="ts">
+import { diagram } from "../i18n";
+</script>
+
 <template>
-  <figure class="system-figure">
+  <figure class="system-figure" :aria-label="diagram.title">
     <div class="figure-label">
-      <span class="status-dot"></span> A connected research perspective
-      <span class="figure-index">FIG. 01</span>
+      <span class="status-dot"></span> {{ diagram.label }}
+      <span class="figure-index">{{ diagram.index }}</span>
     </div>
-    <svg
-      class="system-diagram"
-      viewBox="0 0 560 460"
-      role="img"
-      aria-labelledby="system-title system-description"
-    >
-      <title id="system-title">
-        Human, cyber, and physical systems in a shared feedback loop
-      </title>
-      <desc id="system-description">
-        People contribute goals and decisions; computational systems model and
-        reason; physical systems sense and act. Bidirectional connections link
-        all three around an integrated HCPS perspective.
-      </desc>
-      <defs>
-        <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
-          <circle cx="1" cy="1" r="1" fill="#b1c8c5" opacity=".5" />
-        </pattern>
-        <marker
-          id="arrow"
-          viewBox="0 0 10 10"
-          refX="5"
-          refY="5"
-          markerWidth="5"
-          markerHeight="5"
-          orient="auto-start-reverse"
-        >
-          <path
-            d="M1 1 9 5 1 9"
-            fill="none"
-            stroke="#2b8077"
-            stroke-width="1.4"
-          />
-        </marker>
-      </defs>
-      <rect width="560" height="460" fill="url(#grid)" />
-      <circle
-        cx="280"
-        cy="246"
-        r="159"
-        fill="none"
-        stroke="#b7ceca"
-        stroke-width="1"
-      />
-      <circle
-        class="orbit"
-        cx="280"
-        cy="246"
-        r="194"
-        fill="none"
-        stroke="#9dbab5"
-        stroke-dasharray="2 12"
-      />
-      <path
-        d="M250 131 151 304 M310 131 409 304 M195 347H365"
-        fill="none"
-        stroke="#2b8077"
-        stroke-width="1.5"
-        marker-start="url(#arrow)"
-        marker-end="url(#arrow)"
-      />
-      <path
-        d="M280 148V220 M178 321 250 264 M382 321 310 264"
-        fill="none"
-        stroke="#9abdb5"
-        stroke-dasharray="4 5"
-      />
-      <g fill="#f6f9f5" stroke="#2b8077" stroke-width="1.5">
-        <circle cx="280" cy="105" r="59" />
-        <circle cx="138" cy="347" r="59" />
-        <circle cx="422" cy="347" r="59" />
-      </g>
-      <g
-        stroke="#1e625e"
-        stroke-width="1.5"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <circle cx="280" cy="78" r="7" />
-        <path d="M266 97c0-15 28-15 28 0" />
-        <rect x="128" y="315" width="20" height="18" rx="2" />
-        <path
-          d="M133 311v4m10-4v4m-10 18v4m10-4v4m-19-17h4m20 0h4m-28 8h4m20 0h4"
-        />
-        <path d="m422 311 12 7v14l-12 7-12-7v-14Zm-12 7 12 7 12-7m-12 7v14" />
-      </g>
-      <g
-        fill="#102e42"
-        text-anchor="middle"
-        font-family="system-ui, sans-serif"
-      >
-        <text x="280" y="122" font-size="19" font-weight="600">Human</text>
-        <text x="138" y="364" font-size="19" font-weight="600">Cyber</text>
-        <text x="422" y="364" font-size="19" font-weight="600">Physical</text>
-      </g>
-      <g
-        fill="#496461"
-        text-anchor="middle"
-        font-family="system-ui, sans-serif"
-        font-size="11"
-      >
-        <text x="280" y="140">Goals &amp; decisions</text>
-        <text x="138" y="382">Models &amp; reasoning</text>
-        <text x="422" y="382">Sensing &amp; action</text>
-      </g>
-      <circle cx="280" cy="246" r="39" fill="#102e42" />
-      <text
-        x="280"
-        y="251"
-        fill="#fff"
-        text-anchor="middle"
-        font-size="15"
-        font-family="system-ui, sans-serif"
-        letter-spacing="2"
-      >
-        HCPS
-      </text>
-      <g
-        fill="#426962"
-        font-size="10"
-        font-family="system-ui, sans-serif"
-        letter-spacing="1.5"
-      >
-        <text transform="translate(171 222) rotate(-60)">COLLABORATION</text>
-        <text transform="translate(360 174) rotate(60)">INTERACTION</text>
-        <text x="242" y="369">FEEDBACK</text>
-      </g>
-    </svg>
-    <figcaption>
-      Human agency. Computational reasoning. Physical grounding.
-    </figcaption>
+    <div class="system-map" role="img" :aria-label="diagram.description">
+      <div class="system-node system-human">
+        <div class="system-node-heading">
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <circle cx="16" cy="10" r="5" />
+            <path d="M6 27v-2a10 10 0 0 1 20 0v2M11 27h10" />
+          </svg>
+          <span>{{ diagram.human }}</span>
+        </div>
+        <p>{{ diagram.goals }}</p>
+        <span class="system-node-note">{{ diagram.humanNote }}</span>
+      </div>
+
+      <svg class="system-trunk" viewBox="0 0 20 30" aria-hidden="true">
+        <defs>
+          <marker id="system-trunk-arrow" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="m1 1 5 3-5 3" fill="none" stroke="currentColor" stroke-width="1.2" />
+          </marker>
+        </defs>
+        <path d="M10 3v24" marker-start="url(#system-trunk-arrow)" marker-end="url(#system-trunk-arrow)" />
+      </svg>
+
+      <div class="system-core">
+        <span class="system-core-label">{{ diagram.coreLabel }}</span>
+        <strong>HCPS</strong>
+        <span class="system-core-process">{{ diagram.coreProcess }}</span>
+      </div>
+
+      <svg class="system-branches" viewBox="0 0 600 36" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <marker id="system-branch-arrow" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="m1 1 5 3-5 3" fill="none" stroke="currentColor" stroke-width="1.2" />
+          </marker>
+        </defs>
+        <path d="M300 3v12" marker-start="url(#system-branch-arrow)" />
+        <path d="M150 33V15h300v18" marker-start="url(#system-branch-arrow)" marker-end="url(#system-branch-arrow)" />
+      </svg>
+
+      <div class="system-domains">
+        <div class="system-node">
+          <div class="system-node-heading">
+            <svg viewBox="0 0 32 32" aria-hidden="true">
+              <rect x="8" y="8" width="16" height="16" rx="3" />
+              <rect x="12" y="12" width="8" height="8" rx="1" />
+              <path d="M12 4v4m8-4v4M12 24v4m8-4v4M4 12h4m-4 8h4m16-8h4m-4 8h4" />
+            </svg>
+            <span>{{ diagram.cyber }}</span>
+          </div>
+          <p>{{ diagram.models }}</p>
+          <span class="system-node-note">{{ diagram.cyberNote }}</span>
+        </div>
+        <div class="system-node">
+          <div class="system-node-heading">
+            <svg viewBox="0 0 32 32" aria-hidden="true">
+              <path d="m16 3 11 6v14l-11 6-11-6V9Zm-11 6 11 6 11-6M16 15v14M10 6l11 6" />
+            </svg>
+            <span>{{ diagram.physical }}</span>
+          </div>
+          <p>{{ diagram.sensing }}</p>
+          <span class="system-node-note">{{ diagram.physicalNote }}</span>
+        </div>
+      </div>
+
+      <div class="system-feedback">
+        <svg viewBox="0 0 600 36" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <marker id="system-feedback-arrow" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="m1 1 5 3-5 3" fill="none" stroke="currentColor" stroke-width="1.2" />
+            </marker>
+          </defs>
+          <path d="M150 3v21h300V3" marker-start="url(#system-feedback-arrow)" marker-end="url(#system-feedback-arrow)" />
+        </svg>
+        <span>{{ diagram.feedback }}</span>
+      </div>
+      <div class="system-assurance">{{ diagram.assurance }}</div>
+    </div>
+    <figcaption>{{ diagram.caption }}</figcaption>
   </figure>
 </template>

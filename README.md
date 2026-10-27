@@ -9,9 +9,17 @@ The official website of **CPS-HCPS Research** — Cyber-Physical and Human-Cyber
 
 ## Project Overview
 
-A lightweight, responsive academic website connecting formal foundations, software engineering, and intelligent systems. The initial English site includes Home, About, Research, Seminars, Projects & Resources, Publications, and Contact.
+A lightweight, responsive bilingual academic website connecting formal foundations, software engineering, and intelligent systems. Navigation follows **Home → News → Research → Seminars → Publications → Projects → Resources → People → About**. Seminars contains Book Reading and Paper Reading; contact information follows About.
 
-Content distinguishes planned work from published results. The Book Reading Seminar repository exists but is in preparation. The paper seminar is planned. The publication collection is intentionally empty until verified bibliographic records are available. No member, affiliation, funding, or contact details are inferred.
+English is the default on a first visit. The globe icon at the top right offers English and 简体中文, remembers an explicit selection locally, and stays visible on mobile. The switch updates navigation, content, diagram labels, page title, and document language while preserving section anchors. If browser storage is unavailable, switching still works for the current visit.
+
+Content distinguishes planned work from published results. The Book Reading Seminar repository exists but is in preparation. The paper seminar is planned. News, Projects, People, and Publications have explicit empty states until confirmed content is available. No member, affiliation, funding, or contact details are inferred.
+
+The homepage connects three concepts: intelligent capabilities for perception and reasoning; autonomous operation within explicit boundaries and human oversight; and AI-native architecture that considers intelligence and assurance throughout the system lifecycle. These describe the group's research perspective and objectives.
+
+Research is introduced through three prospective application areas—embodied intelligence, industrial operations, and intelligent software systems—each with a concrete challenge, research value, and potential joint work. These are collaboration opportunities, not claims of deployed projects or demonstrated performance. The existing six research directions provide the theoretical and engineering foundation. The homepage diagram is a responsive concept architecture, with readable text, vector icons, feedback connections, and paired language labels.
+
+Conceptual references: [Ericsson's AI-native definition](https://www.ericsson.com/en/reports-and-papers/white-papers/ai-native), [NIST's CPS Framework](https://www.nist.gov/programs-projects/cyber-physical-systems-and-internet-things-foundations), and [NSF's CPS research scope](https://www.nsf.gov/funding/opportunities/cps-cyber-physical-system-foundations-connected-communities). These inform terminology and research framing; they do not establish the group's achievements or affiliations.
 
 ## Research Scope
 
@@ -40,7 +48,9 @@ scripts/check-build.mjs        Built asset and root-path checks
 scripts/check-content.mjs      Vue rendering, anchors, and semantic checks
 src/
   components/                 Header, diagram, cards, section heading, publications
-  data/site.ts                Typed English content and collections
+  data/site.ts                Default English content and collections
+  data/site.zh.ts             Matching Chinese content
+  i18n.ts                     Language selection, preference, and metadata
   App.vue                     Page composition
   main.ts                     Application entry point
   styles.css                  Design tokens and responsive styles
@@ -95,7 +105,9 @@ Official references: [GitHub Pages naming](https://docs.github.com/en/pages/gett
 
 ## Content Maintenance
 
-Edit `src/data/site.ts` for site identity, navigation, research areas, seminars, resources, publications, and external links. Interface types document each collection. English is one content bundle; a future Chinese bundle can follow the same shape without introducing an internationalization framework now.
+Edit `src/data/site.ts` and `src/data/site.zh.ts` together for site identity, navigation, research areas, seminars, resources, and interface text. Both bundles share a typed structure; IDs and destinations must match. Publication metadata remains in the shared `publications` collection. This site does not need an additional internationalization framework.
+
+News, Projects, and People currently use `EmptySection.vue`; replace their empty states with confirmed content when available. Do not copy people or research records from another group merely to populate these sections. Book Reading and Paper Reading are entries in `seminars`; add further reading formats there without adding new top-level navigation items.
 
 - **Research:** add an entry to `researchAreas`. Set its optional `href` only after a topic page exists; otherwise the card remains descriptive.
 - **Seminars:** update the status and description based on actual records. Add dates or progress only after confirmation. A missing `href` renders text, not a dead link.
